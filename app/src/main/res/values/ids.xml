@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="findDietButton" type="id" />
+    <item name="locationEditText" type="id" />
+    <item name="locationTextView" type="id" />
 </resources>
