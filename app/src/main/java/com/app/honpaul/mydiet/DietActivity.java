@@ -17,6 +17,10 @@ public class DietActivity extends AppCompatActivity {
     private String[] diet = new String[] {"Brown Rice and Mushroom soup", "Ugali and Greens",
             "Fruits", "Chapati and Lentils", "No Junk", "5 glasses of water"};
 
+    private String[] category = new String[] {"Lunch", "Breakfast",
+            "Every 2 Hrs Before Meals", "Dinner", "All the Time", "Small sips through the day"};
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +28,7 @@ public class DietActivity extends AppCompatActivity {
         setContentView(R.layout.activity_diet);
 
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, diet);
+        MyDietArrayAdapter adapter = new MyDietArrayAdapter(this, android.R.layout.simple_list_item_1, diet, category);
         mListView.setAdapter(adapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
