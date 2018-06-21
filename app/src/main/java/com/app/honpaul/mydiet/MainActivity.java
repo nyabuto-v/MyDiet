@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import static com.app.honpaul.mydiet.R.id.findDietButton;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     public static final String TAG = MainActivity.class.getSimpleName();
     @BindView(findDietButton) Button mFindDietButton;
     @BindView(R.id.diseaseEditText) EditText mDiseaseEditText;
@@ -28,14 +28,18 @@ public class MainActivity extends AppCompatActivity {
 
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         mAppNameTextView.setTypeface(ostrichFont);
-        mFindDietButton.setOnClickListener(new View.OnClickListener() {
+
+        mFindDietButton.setOnClickListener(this);
+
+    }
+
             @Override
             public void onClick(View v) {
-                String disease = mDiseaseEditText.getText().toString();
-                Intent intent = new Intent(MainActivity.this, DietActivity.class);
-                intent.putExtra("disease", disease);
-                startActivity(intent);
+                if (v == mFindDietButton) {
+                    String disease = mDiseaseEditText.getText().toString();
+                    Intent intent = new Intent(MainActivity.this, DietActivity.class);
+                    intent.putExtra("disease", disease);
+                    startActivity(intent);
+                }
             }
-        });
-    }
 }
