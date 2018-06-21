@@ -9,10 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import butterknife.BindView;
 
 public class DietActivity extends AppCompatActivity {
-    private TextView mDiseaseTextView;
-    private ListView mListView;
+    @BindView(R.id.listView) TextView mDiseaseTextView;
+    @BindView(R.id.diseaseTextView) ListView mListView;
     private String[] diet = new String[] {"Brown Rice and Mushroom soup", "Ugali and Greens",
             "Fruits", "Chapati and Lentils", "No Junk", "5 glasses of water"};
 
@@ -22,8 +23,6 @@ public class DietActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet);
 
-        mListView = (ListView) findViewById(R.id.listView);
-        mDiseaseTextView = (TextView) findViewById(R.id.diseaseTextView);
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, diet);
         mListView.setAdapter(adapter);

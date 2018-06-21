@@ -9,22 +9,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import static com.app.honpaul.mydiet.R.id.findDietButton;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
-    private Button mFindDietButton;
-    private EditText mDiseaseEditText;
-    private TextView mAppNameTextView;
+    @BindView(findDietButton) Button mFindDietButton;
+    @BindView(R.id.diseaseEditText) EditText mDiseaseEditText;
+    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        mDiseaseEditText = (EditText) findViewById(R.id.diseaseEditText);
-        mFindDietButton = (Button) findViewById(R.id.findDietButton);
-        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         mAppNameTextView.setTypeface(ostrichFont);
         mFindDietButton.setOnClickListener(new View.OnClickListener() {
