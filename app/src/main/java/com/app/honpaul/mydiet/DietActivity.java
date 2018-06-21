@@ -18,7 +18,7 @@ public class DietActivity extends AppCompatActivity {
             "Fruits", "Chapati and Lentils", "No Junk", "5 glasses of water"};
 
     private String[] category = new String[] {"Lunch", "Breakfast",
-            "Every 2 Hrs Before Meals", "Dinner", "All the Time", "Small sips through the day"};
+            "2 Hrs Before Meals", "Dinner", "All the Time", "Small sips through the day"};
 
 
 
