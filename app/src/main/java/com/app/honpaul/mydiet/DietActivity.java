@@ -10,23 +10,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class DietActivity extends AppCompatActivity {
-    @BindView(R.id.listView) TextView mDiseaseTextView;
-    @BindView(R.id.diseaseTextView) ListView mListView;
+    @BindView(R.id.listView) ListView mListView;
+    @BindView(R.id.diseaseTextView) TextView mDiseaseTextView;
     private String[] diet = new String[] {"Brown Rice and Mushroom soup", "Ugali and Greens",
             "Fruits", "Chapati and Lentils", "No Junk", "5 glasses of water"};
 
     private String[] category = new String[] {"Lunch", "Breakfast",
             "2 Hrs Before Meals", "Dinner", "All the Time", "Small sips through the day"};
 
-
+    public static final String TAG = DietActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet);
-
+        ButterKnife.bind(this);
 
         MyDietArrayAdapter adapter = new MyDietArrayAdapter(this, android.R.layout.simple_list_item_1, diet, category);
         mListView.setAdapter(adapter);
