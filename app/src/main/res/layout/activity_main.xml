@@ -33,7 +33,7 @@
         android:layout_above="@+id/findDietButton"
         android:layout_marginBottom="5dp"
         android:padding="5dp"
-        android:hint="Enter Disease Name"
+        android:hint="Search"
         android:layout_centerHorizontal="true" />
 
     <Button
