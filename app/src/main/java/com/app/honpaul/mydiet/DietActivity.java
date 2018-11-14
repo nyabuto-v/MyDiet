@@ -42,7 +42,7 @@ public class DietActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String disease = intent.getStringExtra("disease");
-        mDiseaseTextView.setText("Find the Diet for Chronic Disease: " + disease);
+        mDiseaseTextView.setText("Find the recommended Diet: " + disease);
 
     }
 }
