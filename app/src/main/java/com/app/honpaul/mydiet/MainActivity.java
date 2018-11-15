@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     @Override
                     public void onResponse(Call call, final Response response) throws IOException {
-                        Log.d("RESPONSE",response.body().string());
+//                        Log.d("RESPONSE",response.body().string());
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
