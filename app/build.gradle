@@ -18,6 +18,8 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'API_KEY', API_KEY
+        it.buildConfigField 'String', 'APP_ID', APP_ID
+        it.buildConfigField 'String', 'DIETS_URL',DIETS_URL
     }
 }
 repositories {
