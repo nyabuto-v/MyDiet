@@ -5,20 +5,12 @@
     android:layout_height="match_parent"
     tools:context="com.app.honpaul.mydiet.DietActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recommended Diet For: "
-        android:id="@+id/diseaseTextView"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <ListView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_below="@+id/diseaseTextView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
 
 </RelativeLayout>

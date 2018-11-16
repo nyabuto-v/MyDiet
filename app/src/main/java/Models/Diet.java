@@ -3,6 +3,7 @@ package Models;
 import java.util.ArrayList;
 
 public class Diet {
+    public  static  Diet diet;
     private String category;
     private String health;
     private  String calories;

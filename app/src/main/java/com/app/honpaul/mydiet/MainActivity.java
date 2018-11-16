@@ -28,46 +28,26 @@ import okhttp3.Response;
 import static com.app.honpaul.mydiet.R.id.findDietButton;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    public static final String
-
-            TAG = MainActivity.class.getSimpleName();
-//    private RecyclerView recyclerView;
-
-
+    Diet diet;
     @BindView(findDietButton) Button mFindDietButton;
     @BindView(R.id.diseaseEditText) EditText mDiseaseEditText;
-    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
-
-//    recyclerView = (RecyclerView) findViewById(R.id.recylerView);
-//    recyclerView.setHasFixedSize(true);
-//    recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
-        mAppNameTextView.setTypeface(ostrichFont);
-
         mFindDietButton.setOnClickListener(this);
-        getDiets();
-
     }
-
             @Override
             public void onClick(View v) {
                 if (v == mFindDietButton) {
                     String disease = mDiseaseEditText.getText().toString();
-                    Intent intent = new Intent(MainActivity.this, DietActivity.class);
-                    intent.putExtra("disease", disease);
-                    startActivity(intent);
+                    getDiets(disease);
                 }
             }
-            public  void getDiets(){
-                DietApiService.fetchDiets(new Callback() {
+            public  void getDiets(String calories){
+                DietApiService.fetchDiets(calories,new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
                         e.printStackTrace();
@@ -82,10 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 try{
                                     JSONObject jsonObject=new JSONObject(response.body().string());
                                     JSONObject params=jsonObject.getJSONObject("params");
-
-                                    Diet diet=new Diet(params.getJSONArray("q").getString(0),params.getJSONArray("health").getString(0),
+                                    diet=new Diet(params.getJSONArray("q").getString(0),params.getJSONArray("health").getString(0),
                                             params.getJSONArray("calories").getString(0));
-
                                     JSONArray jsonArray=jsonObject.getJSONArray("hits");
                                     Log.d("LENGTH",Integer.toString(jsonArray.length()));
                                     for (int i=0;i<jsonArray.length();i++){
@@ -94,8 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         diet.setRecipe(recipe.getString("uri"),recipe.getString("label"),recipe.getString("image"));
                                         Log.d("DATA_URL",recipe.getString("image"));
                                     }
-
-
+                                    Diet.diet=diet;
+                                    Intent intent = new Intent(MainActivity.this, DietActivity.class);
+                                    startActivity(intent);
                                 }catch (Exception ex){
                                     ex.printStackTrace();
                                 }

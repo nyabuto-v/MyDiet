@@ -13,17 +13,7 @@ import okhttp3.Request;
 
 
 public class DietApiService {
-      private  static ArrayList<Diet> diets=new ArrayList<>();
-
-      public static ArrayList<Diet> getDiets() {
-            return diets;
-      }
-
-      public  static void  addToArrayList(Diet diet){
-            diets.add(diet);
-      }
-
-      public  static  void  fetchDiets(Callback callback){
+      public  static  void  fetchDiets(String calories,Callback callback){
             OkHttpClient client=new OkHttpClient();
          HttpUrl.Builder builder=HttpUrl.parse(Constants.DIETS_URL).newBuilder();
             builder.addQueryParameter("q","vegan");
@@ -31,7 +21,7 @@ public class DietApiService {
             builder.addQueryParameter("app_key",Constants.API_KEY);
             builder.addQueryParameter("from","0");
             builder.addQueryParameter("to","3");
-            builder.addQueryParameter("calories","591-722");
+            builder.addQueryParameter("calories",calories);
             builder.addQueryParameter("health","alcohol-free");
             String url=builder.build().toString();
             Request request=new Request.Builder()
