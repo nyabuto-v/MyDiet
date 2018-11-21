@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Diet diet;
     @BindView(findDietButton) Button mFindDietButton;
     @BindView(R.id.diseaseEditText) EditText mDiseaseEditText;
-    @Override
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -43,45 +44,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 if (v == mFindDietButton) {
                     String disease = mDiseaseEditText.getText().toString();
-                    getDiets(disease);
+                  Intent intent = new Intent(MainActivity.this, DietActivity.class);
+                  if(!disease.equals("") && disease.matches("-?\\d+(\\.\\d+)?")){
+                      intent.putExtra("Data",disease);
+                      startActivity(intent);
+                  }
+                  else{
+                      Toast.makeText(this,"Input Calories",Toast.LENGTH_LONG).show();
+                  }
                 }
-            }
-            public  void getDiets(String calories){
-                DietApiService.fetchDiets(calories,new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    @Override
-                    public void onResponse(Call call, final Response response) throws IOException {
-                        Log.d("RESPONSE",response.body().string());
-                        MainActivity.this.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try{
-                                    JSONObject jsonObject=new JSONObject(response.body().string());
-                                    JSONObject params=jsonObject.getJSONObject("params");
-                                    diet=new Diet(params.getJSONArray("q").getString(0),params.getJSONArray("health").getString(0),
-                                            params.getJSONArray("calories").getString(0));
-                                    JSONArray jsonArray=jsonObject.getJSONArray("hits");
-                                    Log.d("LENGTH",Integer.toString(jsonArray.length()));
-                                    for (int i=0;i<jsonArray.length();i++){
-                                        JSONObject hit=jsonArray.getJSONObject(i);
-                                        JSONObject recipe =hit.getJSONObject("recipe");
-                                        diet.setRecipe(recipe.getString("uri"),recipe.getString("label"),recipe.getString("image"));
-                                        Log.d("DATA_URL",recipe.getString("image"));
-                                    }
-                                    Diet.diet=diet;
-                                    Intent intent = new Intent(MainActivity.this, DietActivity.class);
-                                    startActivity(intent);
-                                }catch (Exception ex){
-                                    ex.printStackTrace();
-                                }
-                            }
-                        });
-
-                    }
-                });
             }
 }

@@ -1,40 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="15dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/image"
+        android:src="@mipmap/ic_launcher"/>
 
     <TextView
-        android:id="@+id/txtCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:text="label"
+        android:id="@+id/image_name"
+        android:layout_toRightOf="@+id/image"
         android:textColor="#000"
-        android:layout_marginTop="5sp"
-        android:layout_centerHorizontal="true"
-        android:text="Name"/>
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30dp"
+        android:textSize="17dp"/>
 
 
-    <TextView
-        android:id="@+id/txtCalories"
-        android:layout_below="@id/txtCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#053"
-        android:layout_marginTop="5sp"
-        android:layout_centerHorizontal="false"
-        android:text="Calories"/>
 
-    <TextView
-        android:id="@+id/txtHealth"
-        android:layout_below="@id/txtCalories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#053"
-        android:layout_marginTop="5sp"
-        android:layout_centerHorizontal="false"
-        android:text="Health"/>
+
 
 
 </RelativeLayout>
